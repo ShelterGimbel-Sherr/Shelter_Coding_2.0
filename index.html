@@ -1,9 +1,17 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<audio id="sad" controls>
-  <source src="https://math.seattleacademy.org/garyanderson/snd/sad.mp3" type="audio/mpeg">
-</audio>
-<div>Timer: <span id="theTimer">0</span> Score: <span id="score">0</span></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="apple-mobile-web-app-title" content="CodePen">
+<title>AACoding04-2</title>
+<style>
+.correct{
+  background:green;
+}
+
+.incorrect{
+  background:red;
+}
 </style>
 </head>
 <body translate="no">
@@ -15,7 +23,7 @@
 <div>Timer: <span id="theTimer">0</span> Score: <span id="score">0</span></div>
 <h1>Shelter's math Worksheet</h1>
 <p>Do these fast and correctly</p>
-<ul>
+<ol>
   <li>5 + 5 = <input data-correct="10"/></li>
   <li>2 + 4.5 = <input data-correct="6.5"/></li>
   <li>2<sup>3</sup><input data-correct="8"/></li>
@@ -26,4 +34,38 @@
   <li>15<sup>3</sup><input data-correct="3375"/></li>
   <li>7<sup>2</sup><input data-correct="49"/></li>
   <li>1804<sup>1</sup><input data-correct="1804"/></li>   
-<ul>
+<ol>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+<script id="rendered-js">
+const sad = document.getElementById("sad");
+setInterval(onTimer, 1000);
+function onTimer() {
+  let theTimer = Number($("#theTimer").text());
+  theTimer = theTimer + 1;
+  $("#theTimer").text(theTimer);
+}
+
+$("input").change(onChange);
+
+function onChange(evt) {
+  let correct = $(this).data("correct");
+  let response = $(this).val();
+  if (correct == response) {
+    let score = Number($("#score").text());
+    score = score + 1;
+    $("#score").text(score);
+    $(this)
+      .removeClass("incorrect")
+      .addClass("correct");
+  } else {
+    $(this)
+      .removeClass("correct")
+      .addClass("incorrect");
+    if (Math.random() > .9) {
+      sad.play();
+    }
+  }
+}
+    </script>
+</body>
+</html>
