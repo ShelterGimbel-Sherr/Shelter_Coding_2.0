@@ -1,5 +1,3 @@
-# Shelter_Coding_2.0
-Coding Project 10 Questions
 <h1>Shelter's math Worksheet</h1>
 <p>Do these fast and correctly</p>
 <ul>
