@@ -5,6 +5,15 @@
 </audio>
   <div>Timer: <span id="theTimer">0</span> Score: <span id="score">0</span></div>
 <h1>Shelter's math Worksheet</h1>
+<style>
+.correct{
+  background:green;
+}
+
+.incorrect{
+  background:red;
+}
+</style>
 <p>Do these fast and correctly</p>
 <ol>
   <li>5 + 5 = <input data-correct="10"/></li>
@@ -44,8 +53,24 @@ function onChange(evt) {
     $(this)
       .removeClass("correct")
       .addClass("incorrect");
-    if (Math.random() > .9) {
+    if (Math.random() > .3) {
       sad.play();
     }
+  }
+}
+console.clear();
+$("input").change(onChange);
+function onChange(evt) {
+  let correct = $(this).data("correct");
+  let response = $(this).val();
+  console.log(correct, response);
+  if (correct == response) {
+    $(this)
+      .removeClass("incorrect")
+      .addClass("correct");
+  } else {
+    $(this)
+      .removeClass("correct")
+      .addClass("incorrect");
   }
 }
